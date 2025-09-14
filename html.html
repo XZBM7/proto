@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6cf7;
+            --secondary-color: #6f42c1;
+            --accent-color: #00bcd4;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary-color: #6f8dfd;
+            --secondary-color: #9f7ce0;
+            --accent-color: #00e5ff;
+            --text-color: #f0f0f0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 20px;
+            transition: var(--transition);
+            margin-left: 30px;
+            /* يبعدها لليسار */
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
+
+            100% {
+                background-position-x: 1440px;
+            }
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover::before {
+            transform: translateY(0);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-links .phone {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .social-links .email {
+            background-color: #EA4335;
+            color: white;
+        }
+
+        .social-links .linkedin {
+            background-color: #0077B5;
+            color: white;
+        }
+
+        .social-links .github {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -50px;
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+            right: auto;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            width: 80%;
+            max-width: 700px;
+            position: relative;
+            animation: modalFade 0.3s;
+        }
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
+        }
+
+        .skill-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+
+        /* Specialization */
+        .specialization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .specialization-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialization-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
+        }
+
+        .specialization-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .specialization-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .specialization-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .specialization-card:hover .specialization-icon {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+
+        /* Certifications */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 30px 30px;
+            border-color: transparent transparent var(--primary-color) transparent;
+            transition: var(--transition);
+        }
+
+        .cert-card:hover::after {
+            border-width: 0 0 40px 40px;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Tools */
+        .tools-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tool-item {
+            background-color: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .tool-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.8;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-card:hover .project-link {
+            color: white;
+        }
+
+        .project-link:hover {
+            gap: 10px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            padding: 50px 0 20px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Animation for elements */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-content::before {
+                left: -40px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Ibrahim Amr</div>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#specialization">Specialization</a></li>
+                    <li><a href="#certificates">Certifications</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#languages">Languages</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <style>
+        /* Base nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: #fff;
+            flex-direction: column;
+            width: 220px;
+            padding: 20px;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            display: none;
+            /* Hidden by default */
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            color: inherit;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        /* Hamburger always visible */
+        .hamburger {
+            display: block;
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        /* الروابط في الوضع العادي */
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            color: inherit;
+        }
+
+        /* الروابط في الدارك مود */
+        body.dark-mode .nav-links {
+            background: #222;
+            /* خلفية غامقة للقائمة */
+        }
+
+        body.dark-mode .nav-links li a {
+            color: #fff;
+            /* لون الكتابة أبيض */
+        }
+    </style>
+
+    <script>
+        // Toggle Hamburger Menu
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("navLinks");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="img/photo_2025-09-14_01-41-36.jpg" alt="Ibrahim" class="profile-img">
+            <h1>Ibrahim</h1>
+            <p>QA Enginner || Tester Software</p>
+            <div class="social-links">
+                <a href="tel:+201125700310" class="phone" style="text-decoration: none;">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="mailto:ibrahim.amr755@gmail.com" class="email" style="text-decoration: none;">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ibrahim-amr-xz-b238bb316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                    target="_blank" class="linkedin" style="text-decoration: none;">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/XZBM7" target="_blank" class="github" style="text-decoration: none;">
+                    <i class="fab fa-github"></i>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome, I'm Ibrahim</h3>
+                    <p>
+                        I am a passionate <strong>Software Tester</strong> with extensive experience in
+                        <strong>manual testing, automation, performance testing, and web application quality
+                            assurance</strong>.
+                        Throughout my career, I have specialized in writing detailed test cases, executing scenarios,
+                        detecting and reporting bugs, and ensuring that every product I work on meets the highest
+                        standards of quality.
+                    </p>
+                    <p>
+                        My journey in the software industry goes beyond testing — I have also contributed to
+                        <strong>software and application development</strong>, which gives me a deeper understanding of
+                        the development lifecycle and how testing integrates seamlessly into it.
+                        I have mastered different programming languages and applied them in both testing and development
+                        projects,
+                        allowing me to collaborate effectively with developers and deliver more reliable solutions.
+                    </p>
+                    <p>
+                        In addition, I have practical knowledge in <strong>machine learning, artificial intelligence,
+                            and database systems (SQL & NoSQL)</strong>. This unique skill set enables me to test not
+                        only
+                        traditional applications but also intelligent systems, ensuring their performance, accuracy,
+                        and scalability in real-world scenarios.
+                    </p>
+                    <p>
+                        I am committed to continuous growth and have completed numerous <strong>professional
+                            courses</strong>
+                        in software testing, automation, and software engineering. These learning experiences, combined
+                        with
+                        my hands-on expertise, shaped me into a <strong>detail-oriented and highly skilled
+                            tester</strong>
+                        who is capable of ensuring the success of complex software projects.
+                    </p>
+                </div>
+
+                <div class="about-img">
+                    <img src="img/photo_2025-09-12_22-27-00.jpg" alt="About Ibrahim">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="timeline">
+
+                <!-- Microsoft -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal1')">
+                        <div class="timeline-date">Sep 2025 - Present</div>
+                        <h3>Software Tester | Microsoft</h3>
+                        <p>Conducting manual, automation, and performance testing to ensure product quality.</p>
+                    </div>
+                </div>
+
+                <!-- Vodafone -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal2')">
+                        <div class="timeline-date">Jan 2025 - Jun 2025</div>
+                        <h3>Software Tester (ML) | Vodafone</h3>
+                        <p>Tested machine learning applications for performance and accuracy.</p>
+                    </div>
+                </div>
+
+                <!-- Instructor -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal3')">
+                        <div class="timeline-date">Jul 2024 - Aug 2025</div>
+                        <h3>Instructor & Course Supervisor</h3>
+                        <p>Delivered training on software engineering, testing, and modern technologies.</p>
+                    </div>
+                </div>
+
+                <!-- University Portal -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal4')">
+                        <div class="timeline-date">Oct 2024 - Jun 2025</div>
+                        <h3>Developer | University Student Portal</h3>
+                        <p>Developed and deployed the official student portal "MaterialX".</p>
+                    </div>
+                </div>
+
+                <!-- Samaai Company -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal5')">
+                        <div class="timeline-date">Jun 2024 - Nov 2024</div>
+                        <h3>Software Tester | Samaai Company</h3>
+                        <p>Tested applications and contributed to frontend development.</p>
+                    </div>
+                </div>
+
+                <!-- Freelance -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal6')">
+                        <div class="timeline-date">2024 - Present</div>
+                        <h3>Freelance Tester & Developer</h3>
+                        <p>Worked with clients on web apps, testing, and software development tasks.</p>
+                    </div>
+                </div>
+
+                <!-- Teaching -->
+                <div class="timeline-item">
+                    <div class="timeline-content" onclick="openModal('modal7')">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3>Teaching & Training</h3>
+                        <p>Delivered academic and practical sessions in databases, IS, and software testing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Modals -->
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
+            <h2>Software Tester | Microsoft</h2>
+            <p class="timeline-date">Sep 2025 - Present</p>
+            <ul>
+                <li>Perform manual, automation, and performance testing on enterprise solutions.</li>
+                <li>Write and execute test cases, identify bugs, and collaborate with developers to fix issues.</li>
+                <li>Ensure compliance with Microsoft quality standards across web and desktop apps.</li>
+                <li>Contributed to improving test coverage and reducing defects in production releases.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
+            <h2>Software Tester (Machine Learning) | Vodafone</h2>
+            <p class="timeline-date">Jan 2025 - Jun 2025</p>
+            <ul>
+                <li>Tested and validated machine learning models integrated into business systems.</li>
+                <li>Conducted performance and load testing for AI-driven applications.</li>
+                <li>Collaborated with data science teams to enhance model accuracy and reliability.</li>
+                <li>Prepared detailed reports on testing results and optimization areas.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
+            <h2>Instructor & Course Supervisor</h2>
+            <p class="timeline-date">Jul 2024 - Aug 2025</p>
+            <ul>
+                <li>Delivered lectures on UI/UX, Agile, software testing, SOLID, and design patterns.</li>
+                <li>Supervised student projects and provided continuous assessment.</li>
+                <li>Developed a course website “Edu Track” for communication and management.</li>
+                <li>Led sessions on microservices, Big Data, OOP, AOP, React, and Clean Code.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal4')">&times;</span>
+            <h2>Developer | Official University Student Portal</h2>
+            <p class="timeline-date">Oct 2024 - Jun 2025</p>
+            <ul>
+                <li>Developed and deployed the official university student portal “MaterialX”.</li>
+                <li>Implemented features for lecture schedules, exam notifications, and progress tracking.</li>
+                <li>Collaborated with stakeholders to ensure adoption across the entire student community.</li>
+                <li>Improved student-university communication and academic management efficiency.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal5')">&times;</span>
+            <h2>Software Tester | Samaai Company</h2>
+            <p class="timeline-date">Jun 2024 - Nov 2024</p>
+            <ul>
+                <li>Performed functional and regression testing on in-house applications.</li>
+                <li>Created and executed detailed test cases for web-based solutions.</li>
+                <li>Contributed to frontend development tasks to enhance user experience.</li>
+                <li>Ensured timely delivery of bug-free applications to clients.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal6')">&times;</span>
+            <h2>Freelance Tester & Developer</h2>
+            <p class="timeline-date">2024 - Present</p>
+            <ul>
+                <li>Worked with international clients on software testing and web app development.</li>
+                <li>Delivered customized solutions tailored to client requirements.</li>
+                <li>Provided bug reports, test cases, and quality assurance documentation.</li>
+                <li>Managed client communication and project timelines independently.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal7" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal7')">&times;</span>
+            <h2>Teaching & Training</h2>
+            <p class="timeline-date">2023 - Present</p>
+            <ul>
+                <li>Delivered academic and practical sessions in databases (SQL, MySQL) and IS.</li>
+                <li>Guided students in solving large-scale projects with Python and C.</li>
+                <li>Provided training on software development, testing, and database management.</li>
+                <li>Mentored students on applying theoretical knowledge to real-world projects.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-grid">
+
+                <!-- Frontend Development -->
+                <div class="skill-card" onclick="openModal('skill1')">
+                    <div class="skill-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>Front-end Development</h3>
+                    <p>HTML, CSS, React, Next.js with responsive design</p>
+                </div>
+
+                <!-- Manual & Automation Testing -->
+                <div class="skill-card" onclick="openModal('skill2')">
+                    <div class="skill-icon">
+                        <i class="fas fa-vials"></i>
+                    </div>
+                    <h3>Software Testing</h3>
+                    <p>Manual, Automation, API, Mobile & Performance Testing</p>
+                </div>
+
+                <!-- Problem Solving with Python -->
+                <div class="skill-card" onclick="openModal('skill3')">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Problem Solving</h3>
+                    <p>Python, Flask, and Object-Oriented Programming</p>
+                </div>
+
+                <!-- Database Management -->
+                <div class="skill-card" onclick="openModal('skill4')">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Management</h3>
+                    <p>SQL, MySQL, MongoDB with query optimization</p>
+                </div>
+
+                <!-- SDLC & Methodologies -->
+                <div class="skill-card" onclick="openModal('skill5')">
+                    <div class="skill-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>SDLC & Methodologies</h3>
+                    <p>Agile, Waterfall, Test Case & Scenario Writing</p>
+                </div>
+
+                <!-- Version Control -->
+                <div class="skill-card" onclick="openModal('skill6')">
+                    <div class="skill-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <h3>Version Control</h3>
+                    <p>Git, GitHub for collaboration and CI/CD</p>
+                </div>
+
+                <!-- Teamwork & Leadership -->
+                <div class="skill-card" onclick="openModal('skill7')">
+                    <div class="skill-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Teamwork & Leadership</h3>
+                    <p>Strong collaboration, mentoring, and project leadership</p>
+                </div>
+
+                <!-- Time Management -->
+                <div class="skill-card" onclick="openModal('skill8')">
+                    <div class="skill-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Time Management</h3>
+                    <p>Efficient planning and delivery of tasks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Modal for Testing -->
+    <!-- Front-end Development -->
+    <div id="skill1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill1')">&times;</span>
+            <h2>Front-end Development Expertise</h2>
+            <p>I have extensive experience in building responsive, user-friendly, and modern web applications using:</p>
+            <ul>
+                <li>HTML5, CSS3 (Flexbox, Grid, Animations, Media Queries)</li>
+                <li>JavaScript (ES6+ features and modern practices)</li>
+                <li>React.js & Next.js for building scalable SPAs</li>
+                <li>Reusable components and state management (Redux, Context API)</li>
+                <li>UI/UX principles for better user experience</li>
+                <li>Cross-browser compatibility and responsive design</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="skill2" class="modal">
+        <div class="modal-content"> <span class="close-modal" onclick="closeModal('skill2')">&times;</span>
+            <h2>Software Testing Expertise</h2>
+            <p>I am highly skilled in end-to-end software testing, covering:</p>
+            <ul>
+                <li>Manual Testing (functional, regression, smoke, sanity)</li>
+                <li>Automation Testing with Selenium, JUnit, TestNG, and Python</li>
+                <li>Performance Testing with JMeter and Load Testing tools</li>
+                <li>Mobile Testing for Android & iOS applications</li>
+                <li>API Testing using Postman, RestAssured, and SoapUI</li>
+                <li>Writing detailed Test Cases, Scenarios, and Bug Reports</li>
+                <li>Experienced in Agile Testing and SDLC process</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Problem Solving with Python/Flask/OOP -->
+    <div id="skill3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill3')">&times;</span>
+            <h2>Problem Solving with Python & Flask</h2>
+            <p>Strong problem-solving and backend development expertise, including:</p>
+            <ul>
+                <li>Python (OOP, Data Structures, Algorithms)</li>
+                <li>Flask for building lightweight web applications and APIs</li>
+                <li>Integration with databases and front-end applications</li>
+                <li>Unit testing with PyTest and Unittest</li>
+                <li>Automation scripts for productivity and testing</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Database Management -->
+    <div id="skill4" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill4')">&times;</span>
+            <h2>Database Management Expertise</h2>
+            <p>Hands-on experience with both relational and non-relational databases:</p>
+            <ul>
+                <li>SQL & MySQL for relational database design and queries</li>
+                <li>MongoDB for NoSQL applications and big data</li>
+                <li>Database normalization and optimization techniques</li>
+                <li>Stored procedures, indexing, and triggers</li>
+                <li>Data migration and backup strategies</li>
+                <li>Database performance testing and tuning</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SOLID Principles -->
+    <div id="skill5" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill5')">&times;</span>
+            <h2>SOLID Principles & Clean Code</h2>
+            <p>I follow clean code and best practices for scalable software development:</p>
+            <ul>
+                <li>Single Responsibility Principle (SRP)</li>
+                <li>Open/Closed Principle (OCP)</li>
+                <li>Liskov Substitution Principle (LSP)</li>
+                <li>Interface Segregation Principle (ISP)</li>
+                <li>Dependency Inversion Principle (DIP)</li>
+                <li>Applying design patterns and refactoring techniques</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SDLC -->
+    <div id="skill6" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill6')">&times;</span>
+            <h2>Software Development Life Cycle (SDLC)</h2>
+            <p>Deep knowledge of software development phases and testing integration:</p>
+            <ul>
+                <li>Requirement gathering and analysis</li>
+                <li>System and software design</li>
+                <li>Development and coding best practices</li>
+                <li>Testing (manual, automation, performance, API, mobile)</li>
+                <li>Deployment and continuous integration</li>
+                <li>Maintenance and support</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Version Control -->
+    <div id="skill7" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill7')">&times;</span>
+            <h2>Version Control Systems</h2>
+            <p>Proficient with version control and collaboration tools:</p>
+            <ul>
+                <li>Git (branching, merging, conflict resolution)</li>
+                <li>GitHub (repositories, pull requests, code reviews)</li>
+                <li>Collaboration in large teams and projects</li>
+                <li>Continuous integration with GitHub Actions</li>
+                <li>Best practices in commit messages and workflows</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Agile & Waterfall -->
+    <div id="skill8" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill8')">&times;</span>
+            <h2>Agile & Waterfall Methodologies</h2>
+            <p>Experienced in multiple software development methodologies:</p>
+            <ul>
+                <li>Scrum & Kanban for Agile projects</li>
+                <li>Sprint planning, daily stand-ups, and retrospectives</li>
+                <li>Waterfall for structured and sequential projects</li>
+                <li>Requirement traceability and project documentation</li>
+                <li>Agile Testing and integration with DevOps</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Teamwork & Leadership -->
+    <div id="skill9" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill9')">&times;</span>
+            <h2>Teamwork & Leadership</h2>
+            <p>Strong teamwork and leadership skills to support project success:</p>
+            <ul>
+                <li>Leading development and QA teams</li>
+                <li>Mentoring juniors and knowledge sharing</li>
+                <li>Cross-functional collaboration with developers, testers, and stakeholders</li>
+                <li>Conflict resolution and motivation techniques</li>
+                <li>Experience working in international teams</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Time Management -->
+    <div id="skill10" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('skill10')">&times;</span>
+            <h2>Time Management</h2>
+            <p>Excellent time and project management abilities:</p>
+            <ul>
+                <li>Managing multiple projects in parallel</li>
+                <li>Meeting strict deadlines under pressure</li>
+                <li>Prioritizing tasks for maximum efficiency</li>
+                <li>Balancing speed with high-quality outcomes</li>
+                <li>Using tools like Jira, Trello, and Asana</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <!-- Specialization Section -->
+    <section id="specialization">
+        <div class="container">
+            <div class="section-title">
+                <h2>Specialization</h2>
+            </div>
+            <div class="specialization-grid">
+
+                <!-- Software Testing (Manual & Automation) -->
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-vials"></i>
+                    </div>
+                    <h3>Manual & Automation Testing</h3>
+                    <p>Extensive experience in functional, regression, smoke, and sanity testing. Skilled in automation
+                        frameworks such as Selenium, JUnit, TestNG, and Python for scalable test automation solutions.
+                    </p>
+                </div>
+
+                <!-- Frontend Development -->
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <p>Building responsive, modern, and interactive user interfaces using HTML, CSS, JavaScript, React,
+                        and Next.js. Strong focus on usability, performance, and delivering seamless user experiences.
+                    </p>
+                </div>
+
+                <!-- Database Management -->
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Management</h3>
+                    <p>Hands-on experience with SQL, MySQL, and MongoDB. Skilled in database design, optimization,
+                        queries, normalization/denormalization, and ensuring high performance in both relational and
+                        NoSQL systems.</p>
+                </div>
+
+                <!-- Advanced Testing -->
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Advanced Software Testing</h3>
+                    <p>Expertise in API testing with Postman & RestAssured, Performance testing using JMeter, and Mobile
+                        testing for Android/iOS. Specialized in writing test cases, scenarios, bug tracking, and
+                        ensuring quality across the full SDLC.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certificates</h2>
+            </div>
+            <div class="specialization-grid">
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Full Stack Development</h3>
+                    <p>Certificate in React and JavaScript for building modern web applications</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>Manual Testing</h3>
+                    <p>Certificate in software manual testing techniques and defect tracking</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automation Testing</h3>
+                    <p>Certificate in automated testing frameworks and tools</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>API & Mobile Testing</h3>
+                    <p>Certificate in testing REST APIs and mobile applications</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Management</h3>
+                    <p>Certificate in SQL and NoSQL database design and optimization</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Agile & Software Architecture</h3>
+                    <p>Certificate in agile methodologies and software architecture design</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python & Machine Learning</h3>
+                    <p>Certificate in Python programming and machine learning fundamentals</p>
+                </div>
+
+                <div class="specialization-card">
+                    <div class="specialization-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>SOLID Principles</h3>
+                    <p>Certificate in software design patterns and SOLID principles</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-title" style="text-align: center;">
+                <h2>Education</h2>
+            </div>
+            <div class="skills-grid">
+                <!-- University Card -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Helwan University</h3>
+                    <p>Faculty of Computer Science & Artificial Intelligence</p>
+                    <p>2022 - Expected 2026</p>
+                    <p><strong>Grade:</strong> Very Good</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Education Section عادي */
+        #education {
+            padding: 60px 20px;
+        }
+
+        #education .skill-card {
+            background: #fff;
+            color: #333;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Education Section في Dark Mode */
+        body.dark-mode #education {
+            background: #111;
+            /* خلفية داكنة للقسم */
+        }
+
+        body.dark-mode #education .skill-card {
+            background: #222;
+            /* الكارت نفسه غامق */
+            color: #fff;
+            /* الكتابة بيضاء */
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode #education .skill-card strong {
+            color: #4a90e2;
+            /* تمييز الدرجة باللون الأزرق */
+        }
+
+        #education {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 50px 0;
+        }
+
+        #education .skills-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #education .skill-card {
+            max-width: 400px;
+            text-align: center;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #education .skill-icon {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        #education h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+    </style>
+
+
+
+    <!-- Languages Section -->
+    <section id="languages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Languages</h2>
+            </div>
+            <div class="tools-flex">
+
+                <!-- Arabic -->
+                <div class="tool-item">
+                    <img src="https://flagcdn.com/w40/eg.png" alt="Arabic Flag" width="40">
+                    <span>Arabic (Native)</span>
+                </div>
+
+                <!-- English -->
+                <div class="tool-item">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="English Flag" width="40">
+                    <span>English (Excellent)</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        #languages .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #languages .stars {
+            font-size: 1.2rem;
+            color: gold;
+        }
+    </style>
+
+
+    <!-- Tools Section -->
+    <!-- Tools Section -->
+    <section id="tools">
+        <div class="container">
+            <div class="section-title">
+                <h2>Development Tools</h2>
+            </div>
+            <div class="tools-flex">
+
+                <!-- Frontend Tools -->
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                        alt="React Logo" width="40">
+                    <span>React</span>
+                </div>
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
+                        alt="Vue.js Logo" width="40">
+                    <span>Vue.js</span>
+                </div>
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
+                        alt="Bootstrap Logo" width="40">
+                    <span>Bootstrap</span>
+                </div>
+
+                <!-- Databases -->
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                        alt="MySQL Logo" width="40">
+                    <span>MySQL</span>
+                </div>
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                        alt="MongoDB Logo" width="40">
+                    <span>MongoDB</span>
+                </div>
+
+                <!-- Testing Tools -->
+                <div class="tool-item">
+                    <img src="https://www.svgrepo.com/show/354202/postman-icon.svg" alt="Postman Logo" width="40">
+                    <span>Postman</span>
+                </div>
+                <div class="tool-item">
+                    <img src="https://jmeter.apache.org/images/jmeter_square.svg" alt="JMeter Logo" width="40">
+                    <span>JMeter</span>
+                </div>
+
+                <!-- Project Management -->
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira Logo"
+                        width="40">
+                    <span>Jira</span>
+                </div>
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg"
+                        alt="Trello Logo" width="40">
+                    <span>Trello</span>
+                </div>
+
+                <!-- IDEs -->
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+                        alt="VS Code Logo" width="40">
+                    <span>VS Code</span>
+                </div>
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg"
+                        alt="Visual Studio Logo" width="40">
+                    <span>Visual Studio</span>
+                </div>
+
+                <!-- Others -->
+                <div class="tool-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git Logo"
+                        width="40">
+                    <span>Git</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+
+                <!-- University Management System -->
+                <div class="project-card">
+                    <img src="https://www.vmdo.com/img/projects/additional-images/liberty-science-building/1A_Liberty-Science.jpg"
+                        alt="University Management System" class="project-img">
+                    <div class="project-content">
+                        <h3>University Management System</h3>
+                        <p>
+                            Full-stack system for managing students, doctors, schedules, quizzes, grades, and
+                            attendance.<br>
+                            • Backend: Python Flask & MongoDB<br>
+                            • Frontend: HTML, CSS, JavaScript<br>
+                            • Performed comprehensive manual & automation testing to ensure quality and reliability.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/XZBM7/UniversityX" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://drive.google.com/drive/folders/1e0DAvxaafDPUeTQUYSHKog63OF9V-YTI"
+                                target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Real Estate Management System -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Real Estate Management System" class="project-img">
+                    <div class="project-content">
+                        <h3>Real Estate Management System</h3>
+                        <p>
+                            Comprehensive real estate platform connecting property owners, buyers, and admins.<br>
+                            • Frontend: React<br>
+                            • Backend: .NET with SQL Server<br>
+                            • Implemented full security (JWT & Refresh Tokens)<br>
+                            • Created UML diagrams, tested functionality, and optimized performance.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/XZBM7/Real-Estate-Management-System" target="_blank"
+                                class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://drive.google.com/file/d/1bTOzHV_UaRWUmK1-GPbkODHTdGpRAQ3d/view?usp=drivesdk"
+                                target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cinema Booking Website -->
+                <div class="project-card">
+                    <img src="https://images.playground.com/cebb61a3dbc244a3b6c2215c1192809e.jpeg" alt="Cinema Hall"
+                        class="project-img">
+                    <div class="project-content">
+                        <h3>Comprehensive Cinema Booking Website</h3>
+                        <p>
+                            A cinema booking system with seat selection, payments, and food ordering.<br>
+                            • Backend: Python Flask & MongoDB<br>
+                            • Frontend: HTML, CSS, JavaScript<br>
+                            • Conducted manual & automation testing (functional, regression, usability)<br>
+                            • Performed performance & security testing for scalability and safety.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/XZBM7/CineBuzz" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Ibrahim</h3>
+                    <p>Software Tester specialized in manual and automation testing, ensuring software quality,
+                        reliability, and seamless user experiences.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navigation</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p><a href="#about" style="text-decoration: none; color: rgb(233, 7, 7);">About</a></p>
+                        <p><a href="#experience" style="text-decoration: none;color: rgb(233, 7, 7);">Experience</a></p>
+                        <p><a href="#projects" style="text-decoration: none;color: rgb(233, 7, 7);">Projects</a></p>
+                        <p><a href="#contact" style="text-decoration: none; color: rgb(233, 7, 7);">Contact</a></p>
+                    </div>
+
+
+                </div>
+                <div class="footer-col footer-contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 36 Hegazy , Maadi, Cairo</p>
+                    <p><i class="fas fa-phone"></i> +20 1125700310</p>
+                    <p><i class="fas fa-envelope"></i>ibrahim.amr755@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ibrahim. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const subject = `Message from ${name}`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+
+            window.location.href = `mailto:ibrahim.amr755@gmail.com?subject=${subject}&body=${body}`;
+
+            this.reset();
+
+            alert('Your message has been prepared to be sent. Please check your email client.');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
